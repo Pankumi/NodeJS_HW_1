@@ -1,15 +1,14 @@
+// file "index.js":
 // const fs = require("fs").promises;
-const path = require('path');
-const { read, write } = require("./export");
+// const path = require('path');
+const { listContacts, getContactById } = require("./contacts");
 
-const directory ="db";
-const filename = "contacts.json";
-const contactsPath = path.resolve(__dirname, directory, filename);
+listContacts()
+.then( data => console.log('listContacts >>', data) )
 
-// console.log("index >>");
+getContactById('Z5sbDlS7pCzNsnAHLtDJd')
+.then( data => console.log('getContactById >>', data) )
 
-// readFile() і writeFile()
-const data = read(contactsPath)
-.then( (data)=>{
-    console.log(data);
-});
+
+
+
