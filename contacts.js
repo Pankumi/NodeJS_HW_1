@@ -29,11 +29,13 @@ async function getContactById(contactId) {
 
 // TODO: видаляю контакт за id (приймає масив)
 async function removeContact(contactId) {
-    const data = await read(contactsPath);
-    if (!Array.isArray(data)) {
-      throw new Error("Data is not an array");
-    }
-    const dataId = data.find((el) => el.id === contactId);
+  const data = await read(contactsPath);
+  if (!Array.isArray(data)) {
+    throw new Error("Data is not an array");
+  }
+  const dataFilter = data.filter((el) => el.id !== contactId);
+  const newData = await write(contactsPath, dataFilter);
+  return newData;
 }
 
 // TODO: додаю контакт
