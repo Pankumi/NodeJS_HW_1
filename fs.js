@@ -1,3 +1,5 @@
+// file "fs.js":
+
 const fs = require('fs').promises;
 
 const read = async (way) => {
@@ -14,9 +16,11 @@ const read = async (way) => {
 
 const write = async (way, content) => {
   // console.log("way >>", way);
-  json = JSON.stringify(content)
+  // console.log("fs.js content >>", content);
+
+  contentJson = JSON.stringify(content)
   try {
-    const fileData = await fs.writeFile(way, json, 'utf-8');
+    const fileData = await fs.writeFile(way, contentJson, 'utf-8');
     return content;
   } catch (err) {
     console.error(err);
