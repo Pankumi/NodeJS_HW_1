@@ -1,6 +1,7 @@
 // file "index.js":
 
-const argv = require("yargs").argv; // для зручного парса аргументів командного рядка
+const yargs = require("yargs"); // для зручного парса аргументів командного рядка
+const { Command } = require("commander");
 
 const {
   listContacts,
@@ -9,8 +10,24 @@ const {
   addContact,
 } = require("./contacts");
 
-console.log("process.argv >>", process.argv); // містить масив з аргументів які були передані при запуску процесу
-console.log("argv >>", argv);
+const program = new Command(); // commander_1: створюємо новий екземпляр об'єкта Command:
+program
+  .option("-a, --action <type>", "choose action")
+  .option("-i, --id <type>", "user id")
+  .option("-n, --name <type>", "user name")
+  .option("-e, --email <type>", "user email")
+  .option("-p, --phone <type>", "user phone"); // commander_2: викликаємо метод option() для додавання опцій командного рядка.
+
+program.parse(process.argv); // commander_3: викликаємо метод parse() з об'єктом process.argv Цей метод отримує масив аргументів командного рядка, які були передані при запуску програми, та парсить їх за допомогою визначених нами опцій.
+
+const argv = program.opts(); // commander_4: викликаючи метод opts() отримуємо об'єкт, який містить значення всіх опцій.
+// const argv = yargs.argv; // для використання yargs
+
+
+// console.log("process.argv >>", process.argv); // містить масив з аргументів які були передані при запуску процесу
+// console.log("yargs >>", yargs);
+// console.log("program >>", program);
+// console.log("argv >>", argv);
 
 // TODO: рефакторить
 function invokeAction({ action, id, name, email, phone }) {
