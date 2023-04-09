@@ -1,4 +1,3 @@
-// const yargs = require("yargs"); // для зручного парса аргументів командного рядка
 const { Command } = require("commander");
 
 const {
@@ -19,7 +18,6 @@ program
 program.parse(process.argv); // commander_3: викликаємо метод parse() з об'єктом process.argv Цей метод отримує масив аргументів командного рядка, які були передані при запуску програми, та парсить їх за допомогою визначених нами опцій.
 
 const argv = program.opts(); // commander_4: викликаючи метод opts() отримуємо об'єкт, який містить значення всіх опцій.
-// const argv = yargs.argv; // для використання yargs
 
 // TODO: викликаєю відповідний метод з файлу contacts.js передаючи йому необхідні аргументи.
 function invokeAction({ action, id, name, email, phone }) {
