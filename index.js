@@ -19,30 +19,27 @@ program.parse(process.argv); // commander_3: викликаємо метод par
 
 const argv = program.opts(); // commander_4: викликаючи метод opts() отримуємо об'єкт, який містить значення всіх опцій.
 
-// TODO: викликаєю відповідний метод з файлу contacts.js передаючи йому необхідні аргументи.
+// TODO: викликаю відповідний метод з файлу contacts.js передаючи йому необхідні аргументи.
 function invokeAction({ action, id, name, email, phone }) {
   switch (action) {
     case "list":
-      listContacts().then((data) =>
-        console.log("index.js  listContacts >>", data)
-      );
+      listContacts()
+      .then(data => console.table(data))
       break;
 
     case "get":
-      getContactById(id).then((data) =>
-        console.log("index.js getContactById >>", data)
-      );
+      getContactById(id)
+      .then(data => console.table(data));
       break;
 
     case "add":
-      addContact(name, email, phone).then((data) =>
-        console.log("index.js addContact >>", data)
-      );
+      addContact(name, email, phone)
+      .then(data => console.table(data));
       break;
 
     case "remove":
-      removeContact(id).then((data) =>
-        console.log("index.js removeContact >>", data)
+      removeContact(id)
+      .then(data => console.table(data)
       );
       break;
 
